@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //立即执行函数,不需要调用, 立马能够自己执行的函数
+        // 写法
+        // 支持参数使用
+        // (function(){})() 或者 (function(){}())
+        // (function(){})=>这个是函数主体 ,后面一对括号是实参
+        (function(a,b){
+            console.log(a+b);//打印3
+        })(1,2);
+        //两个立即函数之间要分号.才能独立都执行
+        //第二种写法
+        (function(x,y){
+            console.log(x-y);
+        }(3,2));
+        // 3.立即函数中间的所有变量都是 局部变量,
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            /* position: relative; */
+        }
+        .w{
+            width: 1280px;
+            margin: 0 auto;
+        }
+        li{
+            list-style: none;
+        }
+        header{
+            /* width: 90%; */
+            height: 150px;
+            background-color: orange;
+        }
+        nav{
+            /* width: 90%; */
+            height: 200px;
+            background-color: purple;
+        }
+        div{
+            /* width: 90%; */
+            height: 1600px;
+            background-color: pink;
+        }
+        menu{
+            position: absolute;
+            background-color: orange;
+            right: 68px;
+            top: 350px;
+            /* display: none; */
+        }
+        menu ul {
+            width: 50px;
+        }
+        menu ul li{
+            padding:10px 0;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid green;
+
+        }
+        menu ul li[id = add]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="w">head</header>
+    <nav class="w">nav</nav>
+    <div class="w">div</div>
+    <menu>
+        <ul>
+            <li>点赞</li>
+            <li>收藏</li>
+            <li>关注</li>
+            <li id = 'add'>顶部</li>
+            <li>投币</li>
+        </ul>
+    </menu>
+    <script>
+        let menu = document.querySelector('menu');
+        let head = document.querySelector('head');
+        let nav = document.querySelector('nav');
+        let navtop = nav.offsetTop;
+        let menutop = menu.offsetTop;
+        let keeptot = menutop - navtop;
+        document.addEventListener('scroll',function(e){
+            // console.log(1);
+            console.log(window.pageYOffset);
+            if(window.pageYOffset >= navtop){
+                menu.style.position = 'fixed';//固定定位
+                menu.style.top = keeptot + 'px';//固定定位
+
+            }else{
+                menu.style.position = 'absolute';//固定定位
+                menu.style.top = menutop + 'px';//固定定位
+
+            }
+        });
+    </script>
+</body>
+</html>

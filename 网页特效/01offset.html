@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father{
+             width: 200px;
+             height: 200px;
+             background-color: orange;
+             margin: 100px;
+             position: relative;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 30px;
+        }
+        .w{
+            width: 450px;
+            height: 450px;
+            padding: 30px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="w"></div>
+    <script>
+
+        let father = document.querySelector('.father');
+        let son = document.querySelector('.son');
+        let w = document.querySelector('.w');
+        // 可以 动态得到的得到元素的偏移 位置 返回的不带单位的数值
+        console.log(father.offsetTop);
+        console.log(father.offsetLeft);
+        // 如果父亲没有定位,则以body 为准, 如果父亲有定位,则返回父亲为准
+        console.log(son.offsetLeft);
+
+        // 得到元素的大小和高度 //包含会撑大的padding 和bord//不包含margin
+
+        console.log(w.offsetWidth);
+        // 返回带有定位的父亲,否则返回的是body
+        console.log(son.offsetParent);
+        console.log(son.parentNode);//返回最近一级的爸爸,不管父节点有么有定位
+        // JavaScript 通过style 得到 和offset 得到区别
+        // 1.offset 可以得到任意样式表中的样式值, style 只能得到行内样式表中的样式值
+        // 2.offset 获得的数值没有单位的 style获得的是带单位的字符串
+        // 3.offsetWidth 包含padding + border + width  sytle获得不包含padding 和border的值
+        // 4.offsetWidth等属性是只读属性,只能获得,不能修改  style是读写属性,可以获取可以修改
+        // 5.总结: 想要获取元素大小位置用offset 更适合,想要更改元素值 用style改变
+    </script>
+</body>
+</html>

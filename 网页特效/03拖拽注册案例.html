@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            position: relative;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .login-header{
+            height: 35px;
+            width: 100%;
+            /* background-color: pink; */
+            text-align: center;
+            line-height: 35px;
+            font-size: 26px;
+            font-weight: 700;
+            position: absolute;
+        }
+        .login-header a{
+            color: black;
+            text-decoration: none;
+        }
+        .mask{
+            /* float: left; */
+            height: 1280px;
+            width: 100%;
+            background-color: black;
+            opacity: .5;
+            position: absolute;
+            display: none;
+            
+        }
+        .login-body{
+            display: none;
+            position: relative;
+            z-index: 999;
+            width: 500px;
+            height: 300px;
+            background-color: aliceblue;
+            /* border: 1px solid black; */
+            left: 740px;
+            transform: translateX(-50%);
+            top: 200px;
+        }
+        .login-body p{
+            height: 40px;
+            width: 100%;
+            /* background-color: pink; */
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            cursor: move;
+        }
+        .login-body ul{
+            position: relative;
+        }
+        .login-body ul li{
+            margin-top: 30px;
+            float: left;
+            height: 40px;
+            width: 100%;
+            /* background-color: brown; */
+        }
+        .login-body ul li div{
+            float: left;
+            width: 100px;
+            text-align: right;
+            line-height: 40px;
+            font-weight: 550;
+            color:black;
+        }
+        .login-body ul li input{
+            float: right;
+            height: 35px;
+            width: 350px;
+            margin-right: 20px;
+            border: 1px solid black;
+        }
+        .login-body ul li input[type = "submit"]{
+            float: right;
+            height: 35px;
+            width: 200px;
+            margin-right: 140px;
+
+        }
+        .login-body .close{
+
+            position: absolute;
+            background-color: white;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            top: -20px;
+            right: -20px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 40px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="login-header"><a href="javascript:;" id="link">点击,弹出登录框</a></div>
+    <div class="mask"></div>
+    <div class="login-body">
+        <p id = "logintitle">登录会员</p>
+        <div class="close">关闭</div>
+        <ul>
+            <li>
+                <div class="loginword">账号:&nbsp;</div>
+                <input type="text" name="" id="username" placeholder="请输入账号">
+            </li>
+            <li>
+                <div class="pwdword">登录密码:&nbsp;</div>
+                <input type="password" name="" id="password" placeholder="请输入登录密码">
+            </li>
+            <li><input type="submit" value="登录会员"></li>
+        </ul>
+    </div>
+    <script>
+        let loginheader = document.querySelector('.login-header');
+        let loginbody = document.querySelector('.login-body');
+        let mask = document.querySelector('.mask');
+        let logina = document.querySelector('#link');
+        console.log(logina);
+        loginheader.addEventListener('click',function(){
+            console.log(111);
+            mask.style.display = 'block';
+            loginbody.style.display = 'block';
+            this.style.display = 'none';
+            
+        });
+        let closelogin = document.querySelector('.close');
+        console.log(closelogin);
+        let username = document.querySelector('#username');
+        let password = document.querySelector('#password');
+        closelogin.addEventListener('click',function(){
+            console.log(111);
+            mask.style.display = 'none';
+            loginbody.style.display = 'none';
+            loginheader.style.display = 'block';
+            username.value = "";
+            password.value = "";
+        });
+
+        let title = document.querySelector('#logintitle');
+        title.addEventListener('mousedown',function(e){
+            console.log('mousedown');
+            let x = e.pageX;
+            let y = e.pageY;
+            let bx = loginbody.offsetLeft;
+            let by = loginbody.offsetTop;
+            x -= bx;
+            y -= by;
+            function move(e){
+                console.log('mousemove');
+                let tx = e.pageX;
+                let ty = e.pageY;
+                console.log(x);
+                console.log(y);
+                loginbody.style.left = tx - x + 'px';
+                loginbody.style.top = ty - y + 'px';
+                console.log(loginbody.style.left);
+            }
+            console.log('x = '+x + ',y = '+ y);
+            // 鼠标移动
+            document.addEventListener('mousemove',move);
+            document.addEventListener('mouseup',function(){
+                document.removeEventListener('mousemove',move);
+            });
+        })
+    </script>
+</body>
+</html>
